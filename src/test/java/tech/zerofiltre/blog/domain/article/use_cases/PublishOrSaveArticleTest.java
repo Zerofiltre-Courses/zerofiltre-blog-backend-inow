@@ -356,8 +356,10 @@ class PublishOrSaveArticleTest {
 
         //ASSERT
         ArgumentCaptor<UserActionEvent> captor = ArgumentCaptor.forClass(UserActionEvent.class);
+        
         verify(userNotificationProvider,times(1)).notify(captor.capture());
         UserActionEvent value = captor.getValue();
+
         assertThat(value.getAction()).isEqualTo(Action.ARTICLE_SUBMITTED);
         assertThat(value.getArticle()).isNotNull();
         assertThat(value.getAppUrl()).isEqualTo("https://zerofiltre.tech");
